@@ -11,7 +11,9 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "parcel": "^2.13.3"
+    "core-js": "^3.39.0",
+    "parcel": "^2.13.3",
+    "regenerator-runtime": "^0.14.1"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.13.3"
