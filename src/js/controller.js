@@ -1,7 +1,7 @@
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-console.log(icons);
+// console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -29,7 +29,8 @@ function renderSpinner(elementToAttach) {
 async function showRecipe() {
   try {
     const id = window.location.hash.slice(1);
-    // alert(id);
+    // console.log(id);
+    if (!id) return;
     renderSpinner(recipeContainer);
     const response = await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
@@ -55,8 +56,8 @@ async function showRecipe() {
       sourceURL: recipe.sourceURL,
       title: recipe.title,
     };
-    console.log(recipe);
-    console.log(recipe.ingredients[0].description);
+    // console.log(recipe);
+    // console.log(recipe.ingredients[0].description);
     // console.log(response);
     // console.log(data);
 
@@ -163,7 +164,13 @@ async function showRecipe() {
     console.error(error);
   }
 }
-renderSpinner;
+
 // console.log('here');
 showRecipe();
-window.addEventListener('hashchange', showRecipe());
+//what happens here might be the way the this keyword is distributed, look at the following lines
+window.addEventListener('hashchange', () => {
+  console.log('Hash changed:', window.location.hash);
+  showRecipe();
+});
+//the hash change only works when the hash is changed, never looks at the initial hash, this does so
+window.addEventListener('load', showRecipe());
