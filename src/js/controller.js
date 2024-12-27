@@ -29,7 +29,7 @@ function renderSpinner(elementToAttach) {
 async function showRecipe() {
   try {
     const id = window.location.hash.slice(1);
-    alert(id);
+    // alert(id);
     renderSpinner(recipeContainer);
     const response = await fetch(
       `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
