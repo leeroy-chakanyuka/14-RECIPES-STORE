@@ -56,10 +56,10 @@ async function showRecipe() {
       sourceURL: recipe.sourceURL,
       title: recipe.title,
     };
-    // console.log(recipe);
-    // console.log(recipe.ingredients[0].description);
-    // console.log(response);
-    // console.log(data);
+    console.log(recipe);
+    console.log(recipe.ingredients[0].description);
+    console.log(response);
+    console.log(data);
 
     const markupHTML = `<figure class="recipe__fig">
           <img src="${recipe.imageURL}" alt="${
