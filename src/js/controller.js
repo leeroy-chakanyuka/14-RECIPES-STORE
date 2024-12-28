@@ -12,11 +12,11 @@ const timeout = function (s) {
   });
 };
 function renderSpinner(elementToAttach) {
-  const html = `<!-- <div class="spinner">
+  const html = ` <div class="spinner">
     <svg>
       <use href="${icons}.svg#icon-loader"></use>
     </svg>
-  </div> -->
+  </div> 
   `;
   elementToAttach.innerHTML = '';
   elementToAttach.insertAdjacentHTML('afterbegin', html);
@@ -56,10 +56,10 @@ async function showRecipe() {
       sourceURL: recipe.sourceURL,
       title: recipe.title,
     };
-    console.log(recipe);
-    console.log(recipe.ingredients[0].description);
-    console.log(response);
-    console.log(data);
+    // console.log(recipe);
+    // console.log(recipe.ingredients[0].description);
+    // console.log(response);
+    // console.log(data);
 
     const markupHTML = `<figure class="recipe__fig">
           <img src="${recipe.imageURL}" alt="${
