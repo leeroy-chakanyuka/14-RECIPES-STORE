@@ -1,6 +1,7 @@
 import icons from 'url:../img/icons.svg';
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
+import * as model from './model';
 // console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
 
@@ -24,7 +25,7 @@ function renderSpinner(elementToAttach) {
 // https://forkify-api.herokuapp.com/v2
 
 ///////////////////////////////////////
-
+let temp;
 //Getting the recipe from the API
 async function showRecipe() {
   try {
@@ -32,36 +33,10 @@ async function showRecipe() {
     // console.log(id);
     if (!id) return;
     renderSpinner(recipeContainer);
-    const response = await fetch(
-      // `https://forkify-api.herokuapp.com/api/v2/recipes/${id}`
-      `https://forkify-api.herokuapp.com/api/v2/recipes/5ed6604591c37cdc054bc886`
-    );
-    const data = await response.json();
-    if (!response.ok) {
-      alert(
-        `please try a new ID, this one does not exist! Code : ${response.status}`
-      );
-      throw new Error('This ID does not exist!');
-    }
-    //we use let here because we want to make a new object completely, restructuring the formatting from the API
-    let { recipe } = data.data;
-    //get recipe, from the data object
-    // console.log(recipe);
-    recipe = {
-      id: recipe.id,
-      ingredients: recipe.ingredients,
-      cookingTime: recipe.cooking_time,
-      imageURL: recipe.image_url,
-      publisher: recipe.publisher,
-      servings: recipe.servings,
-      sourceURL: recipe.sourceURL,
-      title: recipe.title,
-    };
-    // console.log(recipe);
-    // console.log(recipe.ingredients[0].description);
-    // console.log(response);
-    // console.log(data);
-
+    // GETTING THE RECIPE FROM THE API
+    await model.loadRecipe(id);
+    const { recipe } = model.state;
+    //RENDERING THE RECIPE
     const markupHTML = `<figure class="recipe__fig">
           <img src="${recipe.imageURL}" alt="${
       recipe.title
@@ -159,7 +134,7 @@ async function showRecipe() {
           </a>
         </div>`;
     recipeContainer.innerHTML = '';
-    //we do this so that it gets rid of the "look for a recipe thing"
+    //do this so that it gets rid of the "look for a recipe thing"
     recipeContainer.insertAdjacentHTML('afterbegin', markupHTML);
   } catch (error) {
     console.error(error);
@@ -168,6 +143,7 @@ async function showRecipe() {
 
 // console.log('here');
 showRecipe();
+
 //what happens here might be the way the this keyword is distributed, look at the following lines
 window.addEventListener('hashchange', () => {
   console.log('Hash changed:', window.location.hash);
