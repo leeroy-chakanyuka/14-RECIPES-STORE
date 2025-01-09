@@ -14,9 +14,6 @@ export async function getJSON(url) {
     console.log(response);
     const data = await response.json();
     if (!response.ok) {
-      alert(
-        `please try a new ID, this one does not exist! Code : ${response.status}`
-      );
       throw new Error('This ID does not exist!');
     }
     return data;
