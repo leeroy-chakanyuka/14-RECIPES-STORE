@@ -14,6 +14,15 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
   }
 
+  addHandlerRender(callback) {
+    window.addEventListener('hashchange', () => {
+      console.log('Hash changed:', window.location.hash);
+      callback;
+    });
+
+    window.addEventListener('load', callback);
+  }
+
   renderSpinner() {
     const html = ` <div class="spinner">
       <svg>

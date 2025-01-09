@@ -3,6 +3,7 @@ import 'regenerator-runtime/runtime';
 import * as model from './model';
 import recipeView from './views/recipeView';
 import recipeView from './views/recipeView';
+import recipeView from './views/recipeView';
 // console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
 
@@ -21,10 +22,8 @@ async function controlRecipe() {
     console.error(error);
   }
 }
+function init() {
+  recipeView.addHandlerRender(controlRecipe);
+}
 
-window.addEventListener('hashchange', () => {
-  console.log('Hash changed:', window.location.hash);
-  controlRecipe();
-});
-
-window.addEventListener('load', controlRecipe());
+init();
