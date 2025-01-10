@@ -15,7 +15,6 @@ async function controlRecipe() {
     recipeView.renderSpinner();
     // 1. GETTING THE RECIPE FROM THE API
     await model.loadRecipe(id);
-    console.log(model.state);
     // 2. RENDERING THE RECIPE
     recipeView.render(model.state.recipe);
   } catch (error) {
@@ -23,6 +22,10 @@ async function controlRecipe() {
     recipeView.renderError(error);
   }
 }
+
+recipeView.addHandlerRender(function () {
+  alert('yo, ball');
+});
 function init() {
   recipeView.addHandlerRender(controlRecipe);
 }

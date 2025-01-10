@@ -9,12 +9,11 @@ const timeout = function (s) {
 
 export async function getJSON(url) {
   try {
-    console.log(TIMEOUT);
     const response = await Promise.race([fetch(url), timeout(TIMEOUT)]);
-    console.log(response);
+
     const data = await response.json();
     if (!response.ok) {
-      throw new Error('This ID does not exist!');
+      throw new Error('We could not find this recipe, please try another one!');
     }
     return data;
   } catch (error) {
