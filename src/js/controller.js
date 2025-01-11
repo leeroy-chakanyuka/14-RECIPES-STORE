@@ -3,7 +3,7 @@ import 'regenerator-runtime/runtime';
 import * as model from './model';
 import recipeView from './views/recipeView';
 
-import searchView from './searchView';
+import searchView from './views/searchView';
 // console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
 
