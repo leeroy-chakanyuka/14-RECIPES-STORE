@@ -42,10 +42,13 @@ export async function loadSearchResults(searchFor) {
         image: v.image_url,
       };
     });
-    return state.search.results;
+    if (state.search.results.length == 0) {
+      throw new Error('There are no recipes for this search');
+    } else {
+      return state.search.results;
+    }
   } catch (error) {
-    console.Error(error);
-    console.e;
+    console.error(error);
     throw error;
   }
 }

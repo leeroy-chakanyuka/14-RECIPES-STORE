@@ -2,8 +2,7 @@ import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import * as model from './model';
 import recipeView from './views/recipeView';
-import recipeView from './views/recipeView';
-import recipeView from './views/recipeView';
+
 import searchView from './searchView';
 // console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
@@ -27,19 +26,22 @@ async function controlRecipe() {
 async function controlSearchResults() {
   try {
     const query = searchView.getQuery();
-    console.log(query);
+
     if (!query) return;
+    recipeView.renderSpinner();
     await model.loadSearchResults(query);
     //have to await this, so that it returns the resolved promise, otherwise nothing happens
     console.log(model.state.search.results);
   } catch (error) {
     console.error(error);
+    recipeView.renderError(`${error.message}`);
   }
 }
 controlSearchResults();
 
 function init() {
-  recipeView.addHandlerRender(controlRecipe);
+  recipeView.addHandlerRender(controlRecipe());
+  searchView.addHandlerSearch(controlSearchResults);
 }
 
 init();
