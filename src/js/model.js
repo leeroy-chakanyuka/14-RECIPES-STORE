@@ -42,9 +42,12 @@ export async function loadSearchResults(searchFor) {
         image: v.image_url,
       };
     });
+    return state.search.results;
   } catch (error) {
     console.Error(error);
     console.e;
     throw error;
   }
 }
+
+loadSearchResults('pizza');

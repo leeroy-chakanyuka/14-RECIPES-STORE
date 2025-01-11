@@ -23,9 +23,19 @@ async function controlRecipe() {
   }
 }
 
-recipeView.addHandlerRender(function () {
-  alert('yo, ball');
-});
+async function controlSearchResults() {
+  try {
+    model.loadSearchResults('pizza');
+    console.log(model.state.search.results);
+    for (let i = 0; i < 10; i++) {
+      console.log(model.state.search.results[i]);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+controlSearchResults();
 function init() {
   recipeView.addHandlerRender(controlRecipe);
 }
