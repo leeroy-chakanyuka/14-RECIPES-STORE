@@ -3,7 +3,6 @@ import { Fraction } from 'fractional';
 
 class RecipeView {
   #parentElement = document.querySelector('.recipe');
-  #searchButton = document.querySelector('.btn search__btn');
   #data;
   #errorMessage = 'We could not find this recipe, please try another one!';
   #message;
@@ -17,7 +16,6 @@ class RecipeView {
     this.#parentElement.innerHTML = '';
   }
 
- 
   addHandlerRender(callback) {
     window.addEventListener('load', callback);
     window.addEventListener('hashchange', () => {

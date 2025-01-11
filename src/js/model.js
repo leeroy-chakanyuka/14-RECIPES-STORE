@@ -49,5 +49,3 @@ export async function loadSearchResults(searchFor) {
     throw error;
   }
 }
-
-loadSearchResults('pizza');

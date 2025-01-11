@@ -4,6 +4,7 @@ import * as model from './model';
 import recipeView from './views/recipeView';
 import recipeView from './views/recipeView';
 import recipeView from './views/recipeView';
+import searchView from './searchView';
 // console.log(icons)
 const recipeContainer = document.querySelector('.recipe');
 
@@ -25,7 +26,10 @@ async function controlRecipe() {
 
 async function controlSearchResults() {
   try {
-    await model.loadSearchResults('pizza');
+    const query = searchView.getQuery();
+    console.log(query);
+    if (!query) return;
+    await model.loadSearchResults(query);
     //have to await this, so that it returns the resolved promise, otherwise nothing happens
     console.log(model.state.search.results);
   } catch (error) {
