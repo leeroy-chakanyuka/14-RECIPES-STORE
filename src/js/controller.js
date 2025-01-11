@@ -25,17 +25,15 @@ async function controlRecipe() {
 
 async function controlSearchResults() {
   try {
-    model.loadSearchResults('pizza');
+    await model.loadSearchResults('pizza');
+    //have to await this, so that it returns the resolved promise, otherwise nothing happens
     console.log(model.state.search.results);
-    for (let i = 0; i < 10; i++) {
-      console.log(model.state.search.results[i]);
-    }
   } catch (error) {
     console.error(error);
   }
 }
-
 controlSearchResults();
+
 function init() {
   recipeView.addHandlerRender(controlRecipe);
 }
